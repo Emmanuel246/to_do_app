@@ -11,6 +11,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //text controller
+   final _controller = TextEditingController();
+
+
   /// List of todo tasks
   List toDoList = [
     ["Make Tutorial", false],
@@ -29,7 +33,9 @@ class _HomePageState extends State<HomePage> {
   //// create a new task
   void createNewTask() {
     showDialog(context: context, builder: (context) {
-      return DialogBox();
+      return DialogBox(
+        controller: _controller,
+      );
     });
   }
   @override
