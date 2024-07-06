@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   /// List of todo tasks
   List toDoList = [
     ["Make Tutorial", false],
-    ["Do Exercise", true]
+    ["Do Exercise", false]
   ];
 
   ///checkbox was tapped
@@ -32,7 +32,9 @@ class _HomePageState extends State<HomePage> {
   void saveNewTask () {
     setState(() {
       toDoList.add([_controller.text, false]);
+      _controller.clear();
     });
+          Navigator.of(context).pop();
   }
 
 
