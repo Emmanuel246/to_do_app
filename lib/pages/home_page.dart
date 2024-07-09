@@ -11,6 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //reference the hive box
+  final _myBox = Hive.openBox('mybox');
   //text controller
    final _controller = TextEditingController();
 
@@ -47,7 +49,16 @@ class _HomePageState extends State<HomePage> {
         onCancel: () => Navigator.of(context).pop(),
       );
     });
-  }
+  } 
+
+///////// delete a task
+void deleteTask(int index) {
+  setState(() {
+    toDoList.removeAt(index);
+  });
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +83,10 @@ class _HomePageState extends State<HomePage> {
           return ToDoTile(
             taskName: toDoList[index][0], 
             taskCompleted: toDoList[index][1], 
-            onChanged: (value) => checkBoxChanged(value, index),);
+            onChanged: (value) => checkBoxChanged(value, index),
+            deleteFunction: (context) => deleteTask(index),
+            
+            );
         },
 
       )
